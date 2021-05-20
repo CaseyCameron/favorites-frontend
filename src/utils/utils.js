@@ -26,7 +26,7 @@ export async function logIn(user) {
 
 export async function getGifs(search) {
   const response = await request
-    .get('/api/gifs')
+    .get(URL + '/api/gifs')
     .query({ q: search })
     .set('Authorization', window.localStorage.getItem('TOKEN'));
   console.log('response body ', response.body);
