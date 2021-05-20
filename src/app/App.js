@@ -16,13 +16,20 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <Header/>
+          <Header />
           <main>
 
             <Switch>
               <Route path="/" exact={true}
                 render={routerProps => (
-                  <Home {...routerProps}/>
+                  <Home {...routerProps} />
+                )}
+              />
+
+              <Route path="/auth" exact={true}
+                render={routerProps => (
+                  <AuthPage {...routerProps}
+                    onUser={this.handleUser} />
                 )}
               />
 
@@ -42,7 +49,7 @@ class App extends Component {
 
             </Switch>
           </main>
-          <Footer/>
+          <Footer />
         </Router>
       </div>
     );

@@ -1,0 +1,20 @@
+.AuthPage {
+  width: 400px;
+  margin: auto;
+}
+
+.AuthPage label span {
+  display: block;
+  font-size: .8rem;
+}
+
+.AuthPage p {
+  margin: 10px 0;
+}
+
+.AuthPage button.switch {
+  border: 0;
+  background: unset;
+  text-decoration: underline;
+  color: blue;
+}
