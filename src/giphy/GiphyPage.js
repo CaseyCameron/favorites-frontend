@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import GifList from '../common/GifList';
+import GiphySearch from './GiphySearch';
+//import { getGifs } from '../utils/utils.js';
 
 export default class GiphyPage extends Component {
 
@@ -24,10 +26,10 @@ export default class GiphyPage extends Component {
   handleSearch = async search => {
     try {
       this.setState({ loading: true });
-      const { favorites } = this.state;
+      //const { favorites } = this.state;
 
+      //const gifs = await getGifs(search);
 
-      
     }
     catch (err) {
       console.log(err.message);
@@ -40,15 +42,16 @@ export default class GiphyPage extends Component {
   handleFavorited = async gif => {
 
   }
-  
-  
+
+
 
   render() {
-    
-    
+
+
     return (
-      <div>
-        <GifList/>
+      <div className="GiphyPage">
+        <GiphySearch onSearch={this.handleSearch} />
+        <GifList />
       </div>
     );
   }
