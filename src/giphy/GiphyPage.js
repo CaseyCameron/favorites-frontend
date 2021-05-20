@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import GifList from '../common/GifList';
 import GiphySearch from './GiphySearch';
-import { getGifs } from '../utils/utils.js';
+import { addFavorite, getGifs, removeFavorite } from '../utils/utils.js';
+import request from 'superagent';
 
 export default class GiphyPage extends Component {
 
@@ -39,18 +40,44 @@ export default class GiphyPage extends Component {
   }
 
   handleFavorited = async gif => {
+    try {
+      console.log(gif);
+      if (!gif.id) {
+        // if not favorited (doesn't have an id), then add it as a favorite
+        const addedFavorite = await addFavorite(gif);
 
+        const updatedGifs = this.state.gifs.map(g => {
+          return g.id === addedFavorite.id ? addedFavorite : g;
+        });
+
+        this.setState({ gifs: updatedGifs });
+  
+      } else {
+        // if it's already favorited, remove it from favorites
+        const removed = await removeFavorite(gif.id);
+
+        const updatedGifs = this.state.gifs.map(g => {
+          return g.id === removed.id ? {
+            giphyId: '',
+            preview: '',
+            gif: '',
+            url: ''
+          } : g;
+        });
+
+        this.setState({ gifs: updatedGifs });
+      }
+    }
+    catch (err) {
+      console.log(err.message);
+    }
   }
 
-
-
   render() {
-
-
     return (
       <div className="GiphyPage">
         <GiphySearch onSearch={this.handleSearch} />
-        <GifList gifs={this.state.gifs} />
+        <GifList gifs={this.state.gifs} onFavorited={this.handleFavorited}/>
       </div>
     );
   }

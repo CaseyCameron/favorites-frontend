@@ -4,7 +4,7 @@ import GifItem from './GifItem';
 export default class GifList extends Component {
   render() {
     const { gifs, onFavorited } = this.props;
-    console.log(gifs);
+    
     return (
       <ul className="GifList">
         {gifs.map(gif => (
