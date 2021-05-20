@@ -9,6 +9,7 @@ import {
   Redirect
 } from 'react-router-dom';
 import './App.css';
+import AuthPage from '../auth/AuthPage';
 
 class App extends Component {
 
@@ -33,13 +34,13 @@ class App extends Component {
                 )}
               />
 
-              <Route path="/resources" exact={true}
+              <Route path="/gifs" exact={true}
                 render={routerProps => (
-                  <div>Implement a page of resources</div>
+                  <div>Implement a page of gif</div>
                 )}
               />
 
-              <Route path="/resources/:id"
+              <Route path="/gifs/:id"
                 render={routerProps => (
                   <div>Implement a page for id {routerProps.match.params.id}</div>
                 )}
