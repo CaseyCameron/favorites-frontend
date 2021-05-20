@@ -13,6 +13,20 @@ import AuthPage from '../auth/AuthPage';
 
 class App extends Component {
 
+  state = {
+    token: window.localStorage.getItem('TOKEN'),
+    userId: window.localStorage.getItem('USER_ID'),
+    userName: window.localStorage.getItem('USER_NAME')
+  }
+
+  handleUser = user => {
+    console.log(user);
+    window.localStorage.setItem('TOKEN', user.token);
+    window.localStorage.setItem('USER_ID', user.id);
+    window.localStorage.setItem('USER_NAME', user.name);
+    this.setState({ token: user.token });
+  };
+
   render() {
     return (
       <div className="App">
@@ -36,7 +50,7 @@ class App extends Component {
 
               <Route path="/gifs" exact={true}
                 render={routerProps => (
-                  <div>Implement a page of gif</div>
+                  <div>Implement a page of gifs</div>
                 )}
               />
 
