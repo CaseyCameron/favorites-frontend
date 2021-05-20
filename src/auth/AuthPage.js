@@ -1,11 +1,10 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
+import { signUp, logIn } from '../utils/utils.js';
 import './AuthPage.css';
-
-import React, { Component } from 'react'
 
 export default class AuthPage extends Component {
   state = {
-    isSignup: true,
+    isSignUp: true,
     name: '',
     email: '',
     password: '',
@@ -13,7 +12,7 @@ export default class AuthPage extends Component {
   }
 
   handleSwitch = () => {
-    this.setState({ isSignUp: !this.state.isSignup });
+    this.setState({ isSignUp: !this.state.isSignUp });
   }
 
   handleSubmit = async e => {
@@ -24,10 +23,21 @@ export default class AuthPage extends Component {
 
     this.setState({ error: '' });
 
+    try {
+      const user = await isSignUp ? signUp(this.state) : logIn(this.state);
+
+      onUser(user);
+
+      history.push('/gifs');
+    }
+    catch (err) {
+      this.setState({ error: err.error });
+    }
+
   }
 
   render() {
-    const { isSignup, name, email, password, error } = this.state;
+    const { isSignUp, name, email, password, error } = this.state;
 
     return (
       <form className="AuthPage" onSubmit={this.handleSubmit}>
@@ -57,7 +67,7 @@ export default class AuthPage extends Component {
         </p>
 
         <p>
-          <button>{isSignup ? 'Sign Up' : 'Log in'}</button>
+          <button>{isSignUp ? 'Sign Up' : 'Log in'}</button>
         </p>
 
         <p>
@@ -71,6 +81,6 @@ export default class AuthPage extends Component {
 
         {error && <p>{error}</p>}
       </form>
-    )
+    );
   }
 }
