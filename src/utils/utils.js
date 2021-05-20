@@ -1,10 +1,10 @@
 import request from 'superagent';
 
-const URL = 'https://boiling-wildwood-01634.herokuapp.com';
+const URL = '';
 
 export async function signUp(user) {
   const response = await request
-    .post(URL + '/api/auth/signup')
+    .post('/api/auth/signup')
     .ok(res => res.status < 500)
     .send(user);
 
@@ -15,7 +15,7 @@ export async function signUp(user) {
 
 export async function logIn(user) {
   const response = await request
-    .post(URL + '/api/auth/signin')
+    .post('/api/auth/signin')
     .ok(res => res.status < 500)
     .send(user);
 
@@ -26,7 +26,7 @@ export async function logIn(user) {
 
 export async function getGifs(search) {
   const response = await request
-    .get(URL + '/api/gifs')
+    .get('/api/gifs')
     .query({ q: search })
     .set('Authorization', window.localStorage.getItem('TOKEN'));
   console.log('response body ', response.body);

@@ -7,7 +7,7 @@ export default class GifItem extends Component {
     const { gif } = this.props;
     return (
       <li className="GifItem">
-        <img src={gif.preview} />
+        <img src={gif.gif} />
       </li>
     );
   }
