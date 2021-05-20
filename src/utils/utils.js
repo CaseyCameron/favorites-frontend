@@ -29,6 +29,6 @@ export async function getGifs(search) {
     .get('/api/gifs')
     .query({ q: search })
     .set('Authorization', window.localStorage.getItem('TOKEN'));
-
+  console.log('response body ', response.body);
   return response.body;
 }

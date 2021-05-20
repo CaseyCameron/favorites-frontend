@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import AuthPage from '../auth/AuthPage';
+import GiphyPage from '../giphy/GiphyPage';
 
 class App extends Component {
 
@@ -50,7 +51,7 @@ class App extends Component {
 
               <Route path="/gifs" exact={true}
                 render={routerProps => (
-                  <div>Implement a page of gifs</div>
+                  <GiphyPage {...routerProps} />
                 )}
               />
 

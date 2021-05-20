@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GifList from '../common/GifList';
 import GiphySearch from './GiphySearch';
-//import { getGifs } from '../utils/utils.js';
+import { getGifs } from '../utils/utils.js';
 
 export default class GiphyPage extends Component {
 
@@ -27,9 +27,8 @@ export default class GiphyPage extends Component {
     try {
       this.setState({ loading: true });
       //const { favorites } = this.state;
-
-      //const gifs = await getGifs(search);
-
+      const gifs = await getGifs(search);
+      this.setState({ gifs: gifs });
     }
     catch (err) {
       console.log(err.message);
@@ -51,7 +50,7 @@ export default class GiphyPage extends Component {
     return (
       <div className="GiphyPage">
         <GiphySearch onSearch={this.handleSearch} />
-        <GifList />
+        <GifList gifs={this.state.gifs} />
       </div>
     );
   }
