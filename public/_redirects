@@ -1,2 +1,2 @@
-/api/*  https://your-api-server.herokuapp.com/api/:splat 200!
+/api/*  https://boiling-wildwood-01634.herokuapp.com/api/:splat 200!
 /*      /index.html   200
