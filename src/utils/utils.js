@@ -1,7 +1,5 @@
 import request from 'superagent';
 
-const URL = '';
-
 export async function signUp(user) {
   const response = await request
     .post('/api/auth/signup')
