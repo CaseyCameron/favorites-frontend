@@ -27,6 +27,31 @@ export async function getGifs(search) {
     .get('/api/gifs')
     .query({ q: search })
     .set('Authorization', window.localStorage.getItem('TOKEN'));
-  console.log('response body ', response.body);
+  
+  return response.body;
+}
+
+export async function getMyFavorites() {
+  const response = await request 
+    .get('/api/me/favorites') 
+    .set('Authorization', window.localStorage.getItem('TOKEN'));
+  
+  return response.body;
+}
+
+export async function addFavorite(fav) {
+  const response = await request 
+    .post('/api/favorites') 
+    .send(fav)
+    .set('Authorization', window.localStorage.getItem('TOKEN'));
+  
+  return response.body;
+}
+
+export async function removeFavorite(id) {
+  const response = await request 
+    .delete(`/api/favorites/${id}`)
+    .set('Authorization', window.localStorage.getItem('TOKEN'));
+  
   return response.body;
 }
