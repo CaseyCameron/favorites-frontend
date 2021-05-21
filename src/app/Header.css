@@ -1,4 +1,7 @@
 .Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 20px;
   border-bottom: 1px solid lightgray;
 }
@@ -6,4 +9,8 @@
 h1 {
   font-size: 2rem;
   font-weight: bold;
+}
+
+nav * {
+  margin:9px;
 }

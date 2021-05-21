@@ -9,32 +9,65 @@ import {
   Redirect
 } from 'react-router-dom';
 import './App.css';
+import AuthPage from '../auth/AuthPage';
+import GiphyPage from '../giphy/GiphyPage';
+import FavoritesPage from '../favorites/FavoritesPage';
 
 class App extends Component {
 
+  state = {
+    token: window.localStorage.getItem('TOKEN'),
+    userId: window.localStorage.getItem('USER_ID'),
+    userName: window.localStorage.getItem('USER_NAME')
+  }
+
+  handleUser = user => {
+    console.log(user);
+    window.localStorage.setItem('TOKEN', user.token);
+    window.localStorage.setItem('USER_ID', user.id);
+    window.localStorage.setItem('USER_NAME', user.name);
+    this.setState({ token: user.token });
+  };
+
   render() {
+    const { token } = this.state;
     return (
       <div className="App">
         <Router>
-          <Header/>
+          <Header />
           <main>
 
             <Switch>
               <Route path="/" exact={true}
                 render={routerProps => (
-                  <Home {...routerProps}/>
+                  <Home {...routerProps} />
                 )}
               />
 
-              <Route path="/resources" exact={true}
+              <Route path="/auth" exact={true}
                 render={routerProps => (
-                  <div>Implement a page of resources</div>
+                  <AuthPage {...routerProps}
+                    onUser={this.handleUser} />
                 )}
               />
 
-              <Route path="/resources/:id"
+              <Route path="/gifs" exact={true}
+                render={routerProps => (
+                  <GiphyPage {...routerProps} />
+                )}
+              />
+
+              <Route path="/gifs/:id"
                 render={routerProps => (
                   <div>Implement a page for id {routerProps.match.params.id}</div>
+                )}
+              />
+
+              <Route path="/favorites" exact={true}
+                render={routerProps => (
+                  token
+                    ? <FavoritesPage {...routerProps} />
+                    : <Redirect to="/auth" />
                 )}
               />
 
@@ -42,7 +75,7 @@ class App extends Component {
 
             </Switch>
           </main>
-          <Footer/>
+          <Footer />
         </Router>
       </div>
     );
