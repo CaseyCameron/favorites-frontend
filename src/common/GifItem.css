@@ -9,7 +9,7 @@ img {
   max-width: 100%;
 }
 
-button {
+.fav-button {
   position: absolute;
   bottom: 20%;
   right: 5%;
