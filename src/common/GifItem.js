@@ -22,7 +22,7 @@ export default class GifItem extends Component {
       <li className="GifItem">
         <img src={gif.gif} alt="giphy"/>
         <button className="fav-button" onClick={this.handleFavoriteClick}>
-          {this.state.isFavorite ? WHITE_HEART : RED_HEART}
+          {this.state.isFavorite ? RED_HEART : WHITE_HEART }
         </button>
       </li>
     );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GifList from '../common/GifList';
 import GiphySearch from './GiphySearch';
-import { addFavorite, getGifs, removeFavorite } from '../utils/utils.js';
+import { addFavorite, getGifs, getMyFavorites, removeFavorite } from '../utils/utils.js';
 import request from 'superagent';
 
 export default class GiphyPage extends Component {
@@ -15,6 +15,9 @@ export default class GiphyPage extends Component {
   async componentDidMount() {
     try {
       this.setState({ loading: true });
+
+      const favorites = await getMyFavorites();
+      this.setState({ favorites: favorites });
     }
     catch (err) {
       console.log(err.message);
@@ -41,13 +44,12 @@ export default class GiphyPage extends Component {
 
   handleFavorited = async gif => {
     try {
-      console.log(gif);
       if (!gif.id) {
         // if not favorited (doesn't have an id), then add it as a favorite
         const addedFavorite = await addFavorite(gif);
 
         const updatedGifs = this.state.gifs.map(g => {
-          return g.id === addedFavorite.id ? addedFavorite : g;
+          return g.giphyId === addedFavorite.giphyId ? addedFavorite : g;
         });
 
         this.setState({ gifs: updatedGifs });

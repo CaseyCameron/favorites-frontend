@@ -11,6 +11,7 @@ import {
 import './App.css';
 import AuthPage from '../auth/AuthPage';
 import GiphyPage from '../giphy/GiphyPage';
+import FavoritesPage from '../favorites/FavoritesPage';
 
 class App extends Component {
 
@@ -29,6 +30,7 @@ class App extends Component {
   };
 
   render() {
+    const { token, userName } = this.state;
     return (
       <div className="App">
         <Router>
@@ -58,6 +60,14 @@ class App extends Component {
               <Route path="/gifs/:id"
                 render={routerProps => (
                   <div>Implement a page for id {routerProps.match.params.id}</div>
+                )}
+              />
+
+              <Route path="/favorites" exact={true}
+                render={routerProps => (
+                  token
+                    ? <FavoritesPage {...routerProps}/>
+                    : <Redirect to="/auth"/>
                 )}
               />
 

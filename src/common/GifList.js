@@ -8,7 +8,7 @@ export default class GifList extends Component {
     return (
       <ul className="GifList">
         {gifs.map(gif => (
-          <GifItem key={gif.gifId} gif={gif} onFavorited={onFavorited} />
+          <GifItem key={gif.giphyId} gif={gif} onFavorited={onFavorited} />
         ))}
       </ul>
     );
