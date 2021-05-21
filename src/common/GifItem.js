@@ -6,7 +6,7 @@ const WHITE_HEART = '♡';
 
 export default class GifItem extends Component {
   state = {
-    isFavorite: false
+    isFavorite: Boolean(this.props.gif.id)
   }
 
   handleFavoriteClick = e => {
@@ -20,9 +20,9 @@ export default class GifItem extends Component {
     const { gif } = this.props;
     return (
       <li className="GifItem">
-        <img src={gif.gif} alt="giphy"/>
+        <img src={gif.gif} alt="giphy" />
         <button className="fav-button" onClick={this.handleFavoriteClick}>
-          {this.state.isFavorite ? RED_HEART : WHITE_HEART }
+          {this.state.isFavorite ? RED_HEART : WHITE_HEART}
         </button>
       </li>
     );

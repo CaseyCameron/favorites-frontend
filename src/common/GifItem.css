@@ -1,0 +1,17 @@
+.GifItem {
+  display: flex;
+  width: 200px;
+  margin: 5px;
+  position: relative;
+}
+
+img {
+  max-width: 100%;
+}
+
+button {
+  position: absolute;
+  bottom: 20%;
+  right: 5%;
+  z-index: 100;
+}
