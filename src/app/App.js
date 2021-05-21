@@ -30,7 +30,7 @@ class App extends Component {
   };
 
   render() {
-    const { token, userName } = this.state;
+    const { token } = this.state;
     return (
       <div className="App">
         <Router>
@@ -66,8 +66,8 @@ class App extends Component {
               <Route path="/favorites" exact={true}
                 render={routerProps => (
                   token
-                    ? <FavoritesPage {...routerProps}/>
-                    : <Redirect to="/auth"/>
+                    ? <FavoritesPage {...routerProps} />
+                    : <Redirect to="/auth" />
                 )}
               />
 

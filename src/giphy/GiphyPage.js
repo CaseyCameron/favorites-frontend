@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import GifList from '../common/GifList';
 import GiphySearch from './GiphySearch';
 import { addFavorite, getGifs, getMyFavorites, removeFavorite } from '../utils/utils.js';
-import request from 'superagent';
 
 export default class GiphyPage extends Component {
 
@@ -53,7 +52,7 @@ export default class GiphyPage extends Component {
         });
 
         this.setState({ gifs: updatedGifs });
-  
+
       } else {
         // if it's already favorited, remove it from favorites
         const removed = await removeFavorite(gif.id);
@@ -79,7 +78,7 @@ export default class GiphyPage extends Component {
     return (
       <div className="GiphyPage">
         <GiphySearch onSearch={this.handleSearch} />
-        <GifList gifs={this.state.gifs} onFavorited={this.handleFavorited}/>
+        <GifList gifs={this.state.gifs} onFavorited={this.handleFavorited} />
       </div>
     );
   }
